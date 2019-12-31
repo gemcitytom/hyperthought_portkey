@@ -1,0 +1,13 @@
+<html>
+<head> <h1>Utilities</h1> </head>
+<body> Let's create a selection list with the available files
+    {% for item in listing %} 
+    <p>{{ item }}</p>
+    {% endfor %}
+    <select>
+        {% for item in listing %}
+        <option value={{ item }}>{{ item }}</option>
+        {% endfor %}
+      </select> 
+</body>
+</html>

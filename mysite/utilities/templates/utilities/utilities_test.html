@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<script src="/static/jslibs/jquery.js"></script>
+<html>
+<head> <h1>Utilities</h1> </head>
+<body> 
+  <input type="checkbox" name="colorRequestColumn"> Request Columns (Check before selecting source if color scheme desired for columns)<br/><br/>
+  <input type="checkbox" name="colorRequestGroup"> Request Groups (Check before selecting source if color scheme desired for groups)<br/><br/>
+  
+  
+  
+  Select source<br/><br/>
+    <select name="Source">
+        <option hidden>Source</option>
+        {% for item in listing %}
+        <option value={{ item }}>{{ item }}</option>
+        {% endfor %}
+      </select> <br/><br/>
+      Select subgroups of source (optional)<br/><br/>
+    <select>
+        <option hidden>Subgroup</option>
+        {% for item in listing %}
+        <option value={{ item }}>{{ item }}</option>
+        {% endfor %}
+      </select> <br/><br/>
+    Select column sets<br/><br/>
+    <select>
+        <option hidden>Column Sets</option>
+        {% for item in listing %}
+        <option value={{ item }}>{{ item }}</option>
+        {% endfor %}
+      </select> <br/><br/>
+
+      <p> THD Core</p>
+
+      Naming Prefix <input type="text" name="namPrefix" value="filePrefix"/> (select distinct prefix to distinguish between existing files, otherwise they'll be overwritten)<br/><br/>
+      Network Threshold <input type="number" value="1000" name="netThreshold"/> (minimum number of nodes required to designate a network)<br/><br/>
+      Group Threshold <input type="number" value="100" name="grpThreshold"/>(minimum number of nodes required to designate a group) <br/><br/>
+
+      <input type="checkbox" name="isResIncreaseDynamic" value="false"> Should the resolution increase be dynamic? </input><br/><br/>
+
+      if not dynamic <br/>
+      <input type="number" name="resIncrease" value="10"/><br/><br/>
+      if dynamic<br/>
+      <input type="text" name="dynamicResIncrease" value="5"/><br/><br/>
+      Maximum threads <br/>
+      <input type="number" name="maxThreads" value="5"/><br/><br/>
+      Maximum Resolution <br/>
+      <input type="number" name="maxResolution" value=""><br/><br/>
+<p>Clustering Algorithm</p>
+
+<select>
+  <option hidden value="Clustering Algorithm">Clustering Algorithm</option>
+  <option value="Normal">Normal</option>
+  <option value="SL_Hermite">SL Hermite</option>
+</select> <br/><br/>
+
+Metric <br/>
+<select>
+  <option hidden>Metric</option>
+  {% for item in MetricTypeListing %}
+  <option value={{ item }}>{{ item }}</option>
+  {% endfor %}
+</select> <br/><br/>
+ OR Affine Metric (Make sure the UNION of all your Affine metrics is defined as your column set) :<br/><br/>
+
+ <button onclick="addMetric()" type="button"> Add Metric </button><button onclick="removeMetric()" type="button">Remove Metric</button> <br/>
+
+<p>Lenses</p>
+
+<button onclick="addLense()" type="button"> Add Metric </button><button onclick="removeLense()" type="button">Remove Metric</button> <br/>
+
+<p>Resolution Corrections</p>
+
+<input type="checkbox"/>Model Resolution Correct (Not valid with Affine)<br/>
+<input type="checkbox"/>Model Group Resolution Correction (Not valid with Affine)<br/>
+
+<p>Visualization Data Generation</p>
+Input groups : <br/>
+Select Input Groups<br/><br/>
+
+Export Colorings : <br/>
+Select Coloring Values<br/><br/>
+
+Compare each child to parent : <input type="checkbox"/><br/>
+Compute Average Row (Requires File Matching Source in FullData) : <input type="checkbox"/><br/>
+Generate Group Membership file : <input type="checkbox"/><br/>
+
+</body>
+</html>
+
+
+
+Weight (.5)
+Add Metric Remove Metric
+Lenses
+
+Resolution (1)
+Gain (2)
+
+Add Lense Remove Lense
+
+
+Start THD
